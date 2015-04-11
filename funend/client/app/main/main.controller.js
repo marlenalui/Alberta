@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('albertApp')
-  .controller('MainCtrl', function ($scope, uiCalendarConfig, classes) {
+  .controller('MainCtrl', function ($scope, uiCalendarConfig, classes, $compile) {
     $scope.classes='hello';
+    $scope.baseWeek = 0;
+    $scope.currentWeek = 0;
+    $scope.numOfWeeks = 2;
     var num = 0;
     var date = new Date("2015-04-05T04:00:00");
     console.log(date);
@@ -43,12 +46,55 @@ angular.module('albertApp')
     $scope.addEvent = function(title, week, day, hour, minute, endHour, endMin) {
       $scope.events.push({
         title: title,
-        start: new Date(y, m, d + 1 + day, hour, minute),
-        end: new Date(y, m, d + 1 + day, endHour, endMin),
+        start: new Date(y, m, d + 1 + day + week * 7, hour, minute),
+        end: new Date(y, m, d + 1 + day + week * 7, endHour, endMin),
         allDay: false,
         color: "black"
       });
     };
+
+    $scope.canForward = function(){
+      if($scope.currentWeek < $scope.numOfWeeks - 1){
+        $scope.fore = "";
+        return true;
+      }
+      $scope.fore = "disabled";
+      return false;
+    };
+
+    $scope.canBackward = function(){
+      if($scope.currentWeek > $scope.baseWeek){
+        $scope.back = "";
+        return true;
+      }
+      $scope.back = "disabled";
+      return false;
+    };
+
+    $scope.forward = function(){
+      if($scope.canForward()){
+        uiCalendarConfig.calendars.weekly.fullCalendar('next');
+        $scope.currentWeek += 1;
+      }
+    };
+
+    $scope.backward = function(){
+      if($scope.canBackward()){
+        uiCalendarConfig.calendars.weekly.fullCalendar('prev');
+        $scope.currentWeek -= 1;
+      }
+    };
+
+    $scope.add = function(){
+      $scope.addEvent('Core', 0, 0, 12, 30, 14, 30);
+      console.log(uiCalendarConfig);
+      console.log(uiCalendarConfig.calendars.weekly);
+      console.log(uiCalendarConfig.calendars.weekly.fullCalendar('next'));
+      uiCalendarConfig.calendars.sized.fullCalendar({height: 20});
+      uiCalendarConfig.calendars.sized1.fullCalendar({height: 20});
+      uiCalendarConfig.calendars.sized2.fullCalendar({height: 20});
+      uiCalendarConfig.calendars.sized3.fullCalendar({height: 20});
+    }
 
     $scope.sendData = function(){
       var lines = $scope.classes.split('\n');
@@ -80,11 +126,25 @@ angular.module('albertApp')
         header:{
           left: '',
           center: '',
-          right: 'prev,next'
-        },
-        dayClick: $scope.alertEventOnClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
+          right: ''
+        }
+      },
+      sized:{
+        height: 200,
+        aspectRatio: .25,
+        editable: false,
+        year: 2015,
+        month: 3,
+        date: 5,
+        allDaySlot: false,
+        defaultView: 'agendaWeek',
+        columnFormat: 'dddd',
+        minTime: "7:00:00",
+        maxTime: "23:00:00",
+        header:{
+          left: '',
+          center: '',
+          right: ''}
       }
     };
 
