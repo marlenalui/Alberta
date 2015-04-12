@@ -12,6 +12,8 @@ angular.module('albertApp')
       console.log("success");
     });
   };
+  
+  //lookup Angular JS $Http and match my example above
 
   return e;
   }]);
