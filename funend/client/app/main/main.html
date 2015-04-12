@@ -1,4 +1,4 @@
-<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,26 +7,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+          <a class="navbar-brand" href="#">Alberta</a>
+          <p class="navbar-text">The more attractive and helpful sister of Albert.</p>
         </div>
       </div>
-    </nav> -->
+    </nav>
 
 <div class="container">
   <div class="starter-template">
-    <form ng-submit="sendData()">
+    <form ng-submit="getData()">
       <div class="form-group">
         <label>Class Numbers</label>
         <textarea class="form-control" rows="3" placeholder="CSCI-UA 101..." ng-model="classes"></textarea>
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
+      <button type="button" ng-click="getData()" class="btn btn-default">JSON</button>
     </form>
   </div>
   <!-- <div class="row" ng-hide="true">
@@ -43,10 +38,8 @@
       <div ui-calendar="uiConfig.sized" ng-model="eventSources" calendar="sized3"></div>
     </div>
   </div> -->
-  <div class="row" style="text-align:center;">
-    <i ng-show="loading" class="fa fa-refresh fa-spin fa-5x"></i>
-  </div>
-  <div class="row">
+  <i ng-show="loading" class="fadedcal-icon fa fa-refresh fa-spin fa-5x"></i>
+  <div ng-style="formOp" class="row">
     <div style="float:left;">
       <h2>{{currentWeek + 1}}/{{numOfWeeks}}</h2>
     </div>
@@ -57,130 +50,10 @@
       <button ng-click="forward()" ng-disabled="!canForward()" class="btn btn-primary" value="Forward"><i class="fa fa-arrow-right"></i></button>
     </div>
 
+
+
     <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="weekly">
     </div>
   </div>
 
-  <!-- <div>
-    <table class="table">
-    <tr>
-      <th>
-        <p ng-bind-html="classes"></p>
-      </th>
-      <th>
-        Monday
-      </th>
-      <th>
-        Tuesday
-      </th>
-      <th>
-        Wednesday
-      </th>
-      <th>
-        Thursday
-      </th>
-      <th>
-        Friday
-      </th>
-      <th>
-        Saturday
-      </th>
-      <th>
-        Sunday
-      </th>
-    </tr>
-    <tr>
-      <td>
-        8:00am
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        9:00am
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        10:00am
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        11:00am
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        12:00pm
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        1:00pm
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        2:00pm
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        3:00pm
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        4:00pm
-      </td>
-      <td>
-        Class 1
-      </td>
-    </tr>
-    <tr>
-      <td>
-        5:00pm
-      </td>
-    </tr>
-    <tr>
-      <td>
-        6:00pm
-      </td>
-    </tr>
-    <tr>
-      <td>
-        7:00pm
-      </td>
-    </tr>
-    <tr>
-      <td>
-        8:00pm
-      </td>
-    </tr>
-    </table>
-  </div> -->
 </div><!-- /.container -->

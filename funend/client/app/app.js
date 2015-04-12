@@ -6,13 +6,9 @@ angular.module('albertApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'ui.calendar',
-  'xml'
+  'ui.calendar'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
-    $httpProvider.defaults.headers.common["Content-Type"] = "application/xml";
-    $httpProvider.interceptors.push('xmlHttpInterceptor');
     $urlRouterProvider
       .otherwise('/');
 
